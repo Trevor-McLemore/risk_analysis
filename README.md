@@ -30,7 +30,7 @@ Wins are tracked as 1
 Losses are tracked as 0
 The turn is also returned, either for when the player wins, or when the player got knocked out.
 
-I use T tests to show which strategies are significantly better than other strategies, which strategies win faster, and which strategies lose faster.
+I compare win ratios to show which strategies are better than other strategies, which strategies win faster, and which strategies lose faster.
 
 ## Data Sources
 None. All data is pulled from simulated 5 player games of risk. All the rules of risk are followed with all of their interdependencies. 
@@ -63,15 +63,44 @@ Running a single game is not enough to generate data which is why we have the cr
 
 
 ## EDA
+I started by looking at the attrition in battles to determine good attack and defense behavior.
+```
+3 attacker dice vs 1 defender die gives 1.92 kills per attacker lost
+2 attacker dice vs 1 defender die gives 1.37 kills per attacker lost
+1 attacker die vs 1 defender die gives 0.71 kills per attacker lost
+3 attacker dice vs 2 defender dice gives 1.18 kills per attacker lost
+2 attacker dice vs 2 defender dice gives 0.64 kills per attacker lost
+1 attacker die vs 2 defender dice gives 0.34 kills per attacker lost
+```
+Since the battles aren't strict binomials (the players lose dice when they don't have many troops remaining), simulation was required to figure out who had the advantage in equal fights that were smaller and larger. The defender has advantage in equal fights under 5 vs 5, after which the attacker gains the advantage which becomes very significant at battles with large numbers of troops.
 
+I took the above attrition statistics into account when I designed attack behaviors.
 
 ## Modeling
 
+5 Player Risk Simulations
+Test behavior competes against 4 randomly selected behaviors
+Run game simulation 100 times for each test behavior
+	track win/loss
+	turns to win
+	turns until eliminated
+Compare strategies win ratios
 
 ## Conclusions
+I only tested 6 strategies. Below are the results.
 
+```
+BEHAVIOR			                GAMES WON
+“united states, random”	      40%			
+“pacific islands, defensive”	30%			
+“isolationist, defensive”	    20%			
+“random, random”		          19%			
+“connecter, aggressive”	      4%			
+“network, defensive”		      6%
+```
 
 ## Future Work and Data
+I only got to rudimentary EDA with simulated data. This data can be greatly extendedd.
 Research evolutionary algorithms to see which strategy performs the best against strategies in a robust manner as it's run for a really long time. 
 Longer term, I'll prep the framework for reinforcement learning where I'm giving it the incentives, no strategies, and it figures out all of it's own behaviors. 
 
