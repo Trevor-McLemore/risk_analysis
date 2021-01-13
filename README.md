@@ -2,6 +2,7 @@
 
 Risk is a Python project for analyzing the board game Risk. There is only one code file (risk.ipynb) and all of the data is created from simulation. All of the simulation is original code. This project focuses on 30 nuanced behaviors that vary the territory selection and reinforcement strategies of the players. There are 10 unique territory selection behaviors and 3 reinforcement behaviors with the permutations making 30. The choice to attack is consistent across player strategies and is very nuanced in players only attack when their surrounding territories outnumber an enemy node and they use troops from their nodes that are less likely to be retaliated against because they have less edges. A, perhaps, simpler version of this attacking decision is what I observe in actual gameplay.
 
+```
 territory selection: 
 'r' random, randomly selects territories from those remaining
 'i' isolationist, selects the territories with the least neighbors, tie goes to those that have high cluster coefficients so that attackers have other options
@@ -18,6 +19,7 @@ play style:
 'r' random, places troops completely randomly for the initial phase; reinforcements are placed randomly on their front (if reinforcements are placed completely randomly, there is a good chance that a game between multiple players with this strategy won't finish so I had to revise my code.
 'a' aggressive, places troops on their front in a way that maximizes vulnerability of enemy nodes; Tie goes to their territory with the least troops
 'd' defensive, places troops on their front in a way that maximizes protection of their own nodes
+```
 
 The principles of the game stack up pretty well with the science of war which dictates attacking with overwhelming mass where the enemy doesn't have mass. It's not a stretch to make a game of risk into legitimate combat modeling. Seeing which principles work in how to distribute mass in a complex network like this game has carry over and insight into most networked systems, but especially ones that are being competed over and where mass matters in a stochastic outcome. Voting districts, business placement for competing firms, etc. Writing off the project as just a board game without appreciating the parallels and insights offered would be a mistake.
 
